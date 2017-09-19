@@ -15,30 +15,39 @@ describe(Patient) do
 
   describe("#id") do
   it("tells you its id") do
-    patient = Patient.new({:pat_id => 2, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => "Dr. Phil"})
+    patient = Patient.new({:pat_id => 2, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => 1})
     expect(patient.pat_id()).to(eq(2))
   end
 end
 
   describe("#name") do
     it("tells you its name") do
-      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => "Dr. Phil"})
+      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => 1})
       expect(patient.pat_name()).to(eq("Bob Smith Dinkin"))
     end
   end
 
   describe("#birthday") do
     it("tells you its birthday") do
-      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => "Dr. Phil"})
+      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => 1})
       expect(patient.pat_birthday()).to(eq('1969-05-01'))
     end
   end
 
   describe("#doctor_of_patient") do
     it("show name of patients doctor") do
-      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => "Dr. Phil"})
+      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => 1})
       # patient.save()
-      expect(patient.pat_doctor()).to(eq("Dr. Phil"))
+      expect(patient.pat_doctor()).to(eq(1))
+    end
+  end
+
+  describe("#save") do
+    it("will save a patient into the table in the database") do
+      patient = Patient.new({:pat_id => nil, :pat_name => "Bob Smith Dinkin", :pat_birthday => '1969-05-01', :pat_doctor => 1})
+      patient.save()
+      expect(patient.save()).to(be_an_instance_of(Fixnum))
+
     end
   end
 
