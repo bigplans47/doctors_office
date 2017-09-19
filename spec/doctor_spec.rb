@@ -24,8 +24,6 @@ describe(Doctor) do
   describe("#doc_name") do
     it("will show the name of a doctor") do
     doctor = Doctor.new({:doc_id => nil, :doc_name => "Dr. Oz", :doc_spec => "treatment"})
-    # doctor.save
-    binding.pry
     expect(doctor.doc_name()).to(eq("Dr. Oz"))
     end
   end

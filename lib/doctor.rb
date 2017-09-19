@@ -25,9 +25,9 @@ class Doctor
     # @doc_id = result[0].doc_id.to_i
   end
 
-  def doc_name()
-
-  end
+  # def doc_name()
+  #
+  # end
 
   def ==(another_doctor)
     self.doc_name().==(another_doctor.doc_name()).&self.doc_id().==(another_doctor.doc_id()).&self.doc_spec().==(another_doctor.doc_spec())
