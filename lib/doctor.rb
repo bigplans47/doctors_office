@@ -9,14 +9,14 @@ class Doctor
 
   def self.all
     returned_doctors = DB.exec("SELECT * FROM doctors;")
-    @@doctors = []
+    doctors = []
     returned_doctors.each() do |doctor|
       doc_id = doctor["doc_id"]
       doc_name = doctor["doc_name"]
       doc_spec = doctor["doc_spec"]
-      @@doctors.push(Doctor.new({:doc_id => doc_id, :doc_name => doc_name, :doc_spec => doc_spec}))
+      doctors.push(Doctor.new({:doc_id => doc_id, :doc_name => doc_name, :doc_spec => doc_spec}))
     end
-    @@doctors
+    doctors
   end
 
   def save
@@ -25,9 +25,9 @@ class Doctor
     # @doc_id = result[0].doc_id.to_i
   end
 
-  # def doc_name()
-  #
-  # end
+  def doc_name()
+    @doc_name
+  end
 
   def ==(another_doctor)
     self.doc_name().==(another_doctor.doc_name()).&self.doc_id().==(another_doctor.doc_id()).&self.doc_spec().==(another_doctor.doc_spec())
