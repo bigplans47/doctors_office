@@ -13,18 +13,32 @@ describe(Doctor) do
     end
   end
 
+  describe("#doc_name") do
+    it("will show the name of a doctor") do
+    doctor = Doctor.new({:doc_id => nil, :doc_name => "Dr. Oz", :doc_spec => "treatment"})
+    expect(doctor.doc_name()).to(eq("Dr. Oz"))
+    end
+  end
+
+  describe("#doc_id") do
+    it("will show the id of a doctor") do
+    doctor = Doctor.new({:doc_id => 2, :doc_name => "Dr. Oz", :doc_spec => "treatment"})
+    expect(doctor.doc_id()).to(eq(2))
+    end
+  end
+
+  describe("#doc_spec") do
+    it("will show the spec of a doctor") do
+    doctor = Doctor.new({:doc_id => 2, :doc_name => "Dr. Oz", :doc_spec => "treatment"})
+    expect(doctor.doc_spec()).to(eq("treatment"))
+    end
+  end
+
   describe('#save') do
     it('saves the information of the doctor into our server') do
       doctor = Doctor.new({:doc_id => nil, :doc_name => "Dr.Ben", :doc_spec => "Optomitrist"})
       doctor.save()
       expect(Doctor.all()).to(eq([doctor]))
-    end
-  end
-
-  describe("#doc_name") do
-    it("will show the name of a doctor") do
-    doctor = Doctor.new({:doc_id => nil, :doc_name => "Dr. Oz", :doc_spec => "treatment"})
-    expect(doctor.doc_name()).to(eq("Dr. Oz"))
     end
   end
 
@@ -38,11 +52,14 @@ describe(Doctor) do
   end
 end
 
-
-
-
-
-
+describe('#find') do
+  it('matches the id with the argument and returns the matching object') do
+    doctor = Doctor.new({:doc_id => nil, :doc_name => "Dr.Ben", :doc_spec => "Optomitrist"})
+    doctor.save()
+    # binding.pry
+    expect(Doctor.find(doctor.doc_id)).to(eq(doctor))
+  end
+end
 
 # describe ("add a doctor") do
 #     it("allows you to add a doctor") do
