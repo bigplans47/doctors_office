@@ -39,4 +39,17 @@ class Doctor
     self.doc_name().==(another_doctor.doc_name()).&self.doc_id().==(another_doctor.doc_id()).&self.doc_spec().==(another_doctor.doc_spec())
   end
 
+  def patients
+  list_patients = []
+  patients = DB.exec("SELECT * FROM patients WHERE pat_doctor = 1;")
+  # patients = DB.exec("SELECT * FROM patients WHERE pat_doctor = #{self.doc_id()};")
+  patients.each() do |patient|
+    pat_id = patient.fetch("pad_id").to_i()
+    pat_name = patient.fetch("pat_name")
+    pat_doctor = patient.fetch('pat_doctor').to_i()
+    pat_birthday = patient.fetch('pat_birthday')
+    list_patients.push(Patient.new({:pat_id => pat_id, :pat_name => pat_name, :pat_doctor => pat_doctor, :pat_birthday => pat_birthday}))
+  end
+  list_patients
+  end
 end

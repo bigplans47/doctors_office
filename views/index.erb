@@ -1,8 +1,25 @@
-LIST OF DOCTORS
+<h1>Your Current Lists</h1>
+
+<% if @doctors.any?() %>
+  <h3>Here are your Doctors:</h3>
+
+  <ul>
+    <% @doctors.each() do |doctor| %>
+      <li><a href="/lists/<%= doctor.doc_id()%>"><%= doctor.doc_name() %></a> </li>
+    <% end %>
+  </ul>
+
+<% else %>
+    <p>There are no Doctors yet!</p>
+<% end %>
+
 
 <h2>Add a new Doctor:</h2>
-<form action="/<%= @list_id %>" method="post">
-  <input type="text" name="task">
-  <input type="datetime-local" name="due_date">
-  <button type="submit">Create task</button>
+<form action="/" method="post">
+<!-- <form action="/<%= @doc_id %>" method="post"> -->
+  <label for="doctor">Enter in the name of Doctor below</label>
+  <input type="text" name="doc_name">
+  <label for="doctor">Enter in the Doctors Specialty</label>
+  <input type="text" name="doc_spec">
+  <button type="submit">Create Doc</button>
 </form>
